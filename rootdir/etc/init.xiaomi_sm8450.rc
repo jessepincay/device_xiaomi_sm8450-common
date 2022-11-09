@@ -24,6 +24,10 @@ on boot
     # workaround for doze brightness
     write /sys/devices/virtual/mi_display/disp_feature/disp-DSI-0/doze_brightness -1
 
+    # Workarround for cache
+     rm /data/resource-cache
+     rm /data/system/package_cache
+
     # Create persist for camera calibration data
     mkdir /mnt/vendor/persist/camera 0755 system cameraserver
 
