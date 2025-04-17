@@ -160,6 +160,10 @@ $(call inherit-product, hardware/dolby/dolby.mk)
 PRODUCT_PACKAGES += \
     android.hardware.drm-service.clearkey
 
+# Esim
+PRODUCT_PACKAGES += \
+    XiaomiEsimSwitcher
+
 # Fingerprint
 PRODUCT_PACKAGES += \
     android.hardware.biometrics.fingerprint-service.xiaomi \
