@@ -177,6 +177,10 @@ $(call inherit-product, vendor/sony/dolby/dolby.mk)
 PRODUCT_PACKAGES += \
     android.hardware.drm-service.clearkey
 
+# Esim
+PRODUCT_PACKAGES += \
+    XiaomiEsimSwitcher
+
 # Fingerprint
 ifneq ($(TARGET_USES_MFP_DAEMON),true)
 PRODUCT_PACKAGES += \
