@@ -190,6 +190,10 @@ SYSTEM_EXT_PRIVATE_SEPOLICY_DIRS += $(COMMON_PATH)/sepolicy/private
 SYSTEM_EXT_PUBLIC_SEPOLICY_DIRS += $(COMMON_PATH)/sepolicy/public
 BOARD_VENDOR_SEPOLICY_DIRS += $(COMMON_PATH)/sepolicy/vendor
 
+ifneq (,$(filter user, $(TARGET_BUILD_VARIANT)))
+BOARD_VENDOR_SEPOLICY_DIRS += $(COMMON_PATH)/sepolicy/test
+endif
+
 DEVICE_MANIFEST_FILE := $(COMMON_PATH)/vintf/manifest_empty.xml
 
 # VINTF
