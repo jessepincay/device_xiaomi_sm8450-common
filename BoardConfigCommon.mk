@@ -187,14 +187,16 @@ SYSTEM_EXT_PRIVATE_SEPOLICY_DIRS += $(COMMON_PATH)/sepolicy/private
 SYSTEM_EXT_PUBLIC_SEPOLICY_DIRS += $(COMMON_PATH)/sepolicy/public
 BOARD_VENDOR_SEPOLICY_DIRS += $(COMMON_PATH)/sepolicy/vendor
 
+DEVICE_MANIFEST_FILE := $(COMMON_PATH)/vintf/manifest_empty.xml
+
 # VINTF
 DEVICE_MATRIX_FILE := hardware/qcom-caf/common/compatibility_matrix.xml
 
-DEVICE_MANIFEST_FILE := $(COMMON_PATH)/vintf/manifest_empty.xml
-
-DEVICE_MANIFEST_SKUS := taro diwali cape ukee
+DEVICE_MANIFEST_SKUS += taro diwali cape ukee
 $(foreach sku, $(call to-upper, $(DEVICE_MANIFEST_SKUS)), \
     $(eval DEVICE_MANIFEST_$(sku)_FILES := \
+        $(COMMON_PATH)/vintf/vendor.dolby.media.c2.xml \
+        $(COMMON_PATH)/vintf/vendor.dolby.hardware.dms@2.0-service.xml \
         $(COMMON_PATH)/vintf/manifest.xml \
         $(COMMON_PATH)/vintf/manifest_xiaomi.xml \
         $(if $(TARGET_NFC_SUPPORTED_SKUS),$(COMMON_PATH)/vintf/manifest_no_nfc.xml,) \
@@ -207,6 +209,7 @@ $(foreach nfc_sku, $(call to-upper, $(TARGET_NFC_SUPPORTED_SKUS)), \
 endif
 
 DEVICE_FRAMEWORK_COMPATIBILITY_MATRIX_FILE += \
+    $(COMMON_PATH)/vintf/dolby_framework_matrix.xml \
     hardware/qcom-caf/common/vendor_framework_compatibility_matrix.xml \
     hardware/xiaomi/vintf/xiaomi_framework_compatibility_matrix.xml
 
