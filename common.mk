@@ -301,6 +301,10 @@ $(foreach sku_out, $(TARGET_COPY_OUT_NFC_SKU_PERMISSIONS), \
         frameworks/native/data/etc/com.nxp.mifare.xml:$(sku_out)/com.nxp.mifare.xml))
 
 # Overlays
+DEVICE_PACKAGE_OVERLAYS += \
+    $(LOCAL_PATH)/overlay-custom
+
+# Overlays
 PRODUCT_PACKAGES += \
     CarrierConfigResCommon \
     FrameworksResCommon \
