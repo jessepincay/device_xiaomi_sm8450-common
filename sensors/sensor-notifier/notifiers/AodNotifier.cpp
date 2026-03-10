@@ -66,7 +66,6 @@ AodNotifier::~AodNotifier() {
 }
 
 void AodNotifier::notify() {
-    Result res;
 
     if (mQueue == nullptr) {
         LOG(ERROR) << "failed to initialize sensor queue";
@@ -121,10 +120,8 @@ void AodNotifier::notify() {
             case MI_DISP_POWER_LP1:
                 FALLTHROUGH_INTENDED;
             case MI_DISP_POWER_LP2:
-                activeDisplays.insert(response->base.disp_id);
-                res = mQueue->enableSensor(mSensorHandle, 20000 /* sample period */,
-                                           0 /* latency */);
-                if (res != Result::OK) {
+                if (!mQueue->enableSensor(mSensorHandle, 20000 /* sample period */,
+                    0 /* latency */).isOk()) {
                     LOG(ERROR) << "failed to enable sensor";
                 }
                 break;
@@ -132,12 +129,8 @@ void AodNotifier::notify() {
                 requestDozeBrightness(disp_fd_.get(), DOZE_TO_NORMAL, response->base.disp_id);
                 FALLTHROUGH_INTENDED;
             default:
-                activeDisplays.erase(response->base.disp_id);
-                if (activeDisplays.empty()) {
-                    res = mQueue->disableSensor(mSensorHandle);
-                    if (res != Result::OK) {
-                        LOG(DEBUG) << "failed to disable sensor";
-                    }
+                if (!mQueue->disableSensor(mSensorHandle).isOk()) {
+                    LOG(DEBUG) << "failed to disable sensor";
                 }
                 break;
         }
