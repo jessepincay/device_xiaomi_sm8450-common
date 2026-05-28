@@ -7,3 +7,5 @@ set_prop(vendor_init, vendor_qcc_prop)
 recovery_only(`
 allow init proc:file write;
 ')
+
+get_prop(vendor_init, aux_camera_control_prop)
