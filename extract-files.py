@@ -69,6 +69,14 @@ blob_fixups: blob_fixups_user_type = {
             'android.hardware.security.sharedsecret-V1-ndk.so',
         )
         .add_needed('android.hardware.security.rkp-V1-ndk.so'),
+    'system_ext/lib64/libwfdmmsrc_system.so': blob_fixup()
+        .add_needed('libaudiobase.so')
+        .add_needed('libgui_shim.so'),
+    'system_ext/lib64/libwfdservice.so': blob_fixup()
+        .add_needed('libaudiobase.so')
+        .add_needed('wfdservice_shim.so')
+        .replace_needed('android.media.audio.common.types-V4-cpp.so', 'android.media.audio.common.types-V5-cpp.so')
+        .replace_needed('android.media.audio.common.types-V2-cpp.so', 'android.media.audio.common.types-V5-cpp.so'),
     'vendor/bin/qcc-trd': blob_fixup()
         .replace_needed(
             'libgrpc++_unsecure.so', 'libgrpc++_unsecure_prebuilt.so'
@@ -85,6 +93,7 @@ blob_fixups: blob_fixups_user_type = {
     'vendor/etc/vintf/manifest/c2_manifest_vendor.xml': blob_fixup()
         .regex_replace('.+dolby.+\n', ''),
     (
+        'vendor/lib64/libaudiocloudctrl.so',
         'vendor/lib64/libdpps.so',
         'vendor/lib64/libsnapdragoncolor-manager.so',
     ): blob_fixup()
