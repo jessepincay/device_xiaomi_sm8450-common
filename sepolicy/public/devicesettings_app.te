@@ -1,3 +1,2 @@
 type devicesettings_app, domain;
 typeattribute devicesettings_app mlstrustedsubject;
-typeattribute devicesettings_app coredomain;
