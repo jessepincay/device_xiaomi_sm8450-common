@@ -12,3 +12,10 @@ allow system_app hal_health_default:binder call;
 allow system_app hal_nfc_default:binder call;
 allow system_app hal_power_default:binder call;
 allow system_app vendor_hal_keymint_qti:binder call;
+
+# Graphics / KGSL
+allow system_app vendor_sysfs_graphics:dir search;
+allow system_app vendor_sysfs_graphics:file rw_file_perms;
+allow system_app vendor_sysfs_kgsl:dir search;
+allow system_app vendor_sysfs_kgsl:{ file lnk_file } rw_file_perms;
+allow system_app vendor_sysfs_kgsl_gpuclk:file r_file_perms;
