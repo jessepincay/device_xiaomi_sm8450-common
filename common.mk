@@ -261,6 +261,10 @@ PRODUCT_PACKAGES += \
 
 $(call soong_config_set_bool,lineage_health,charging_control_supports_bypass,false)
 
+# Media profiles
+PRODUCT_VENDOR_PROPERTIES += \
+    ro.media.xml_variant.profiles=_taro
+
 # Network
 PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.software.ipsec_tunnel_migration.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.software.ipsec_tunnel_migration.xml \
